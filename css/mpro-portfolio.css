@@ -1,0 +1,195 @@
+/* MPRO Portfolio — Frontend Styles */
+
+/* ── Grid layout ── */
+.mpro-pf-grid {
+  display: grid;
+  gap: 28px;
+  grid-template-columns: repeat(3, 1fr);
+}
+.mpro-pf-grid--cols-1 { grid-template-columns: 1fr; }
+.mpro-pf-grid--cols-2 { grid-template-columns: repeat(2, 1fr); }
+.mpro-pf-grid--cols-3 { grid-template-columns: repeat(3, 1fr); }
+.mpro-pf-grid--cols-4 { grid-template-columns: repeat(4, 1fr); }
+.mpro-pf-grid--cols-5 { grid-template-columns: repeat(5, 1fr); }
+.mpro-pf-grid--cols-6 { grid-template-columns: repeat(6, 1fr); }
+
+@media (max-width: 900px) {
+  .mpro-pf-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 600px) {
+  .mpro-pf-grid { grid-template-columns: 1fr !important; }
+}
+
+.mpro-pf-empty {
+  opacity: 0.6;
+  font-style: italic;
+}
+
+/* ── Shared card base ── */
+.mpro-pf-card {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #111;
+}
+.mpro-pf-card-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+.mpro-pf-card-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.mpro-pf-card-desc {
+  margin: 6px 0 0;
+  font-size: 0.9rem;
+  opacity: 0.75;
+  line-height: 1.5;
+}
+.mpro-pf-card-cat {
+  display: inline-block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.65;
+  margin-bottom: 4px;
+}
+.mpro-pf-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.mpro-pf-tag {
+  font-size: 0.72rem;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ── Style 1: overlay card ── */
+.mpro-pf-card--style-1 { aspect-ratio: 4 / 3; }
+.mpro-pf-card--style-1 .mpro-pf-card-media { position: absolute; inset: 0; }
+.mpro-pf-card--style-1 .mpro-pf-card-img { width: 100%; height: 100%; object-fit: cover; }
+.mpro-pf-card--style-1 .mpro-pf-card-overlay {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0));
+  color: #fff;
+}
+
+/* ── Style 2: detailed card ── */
+.mpro-pf-card--style-2 { border: 1px solid rgba(255,255,255,0.08); }
+.mpro-pf-card--style-2 .mpro-pf-card-body { padding: 18px; }
+
+/* ── Style 3: horizontal row ── */
+.mpro-pf-card--style-3 {
+  display: flex;
+  align-items: stretch;
+  gap: 18px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.mpro-pf-card--style-3 .mpro-pf-card-media { flex: 0 0 220px; }
+.mpro-pf-card--style-3 .mpro-pf-card-img { width: 100%; height: 100%; object-fit: cover; }
+.mpro-pf-card--style-3 .mpro-pf-card-body { flex: 1; padding: 18px 18px 18px 0; align-self: center; }
+
+@media (max-width: 600px) {
+  .mpro-pf-card--style-3 { flex-direction: column; }
+  .mpro-pf-card--style-3 .mpro-pf-card-media { flex: none; aspect-ratio: 16/9; }
+  .mpro-pf-card--style-3 .mpro-pf-card-body { padding: 14px; }
+}
+
+/* ── Single template ── */
+.mpro-pf-single { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+.mpro-pf-single-header { margin-bottom: 28px; }
+.mpro-pf-single-cats { margin-bottom: 12px; }
+.mpro-pf-cat-pill {
+  display: inline-block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  text-decoration: none;
+  color: inherit;
+  margin-right: 6px;
+}
+.mpro-pf-single-title { font-size: 2.4rem; margin: 0 0 12px; line-height: 1.2; }
+.mpro-pf-single-summary { font-size: 1.1rem; opacity: 0.75; max-width: 700px; }
+.mpro-pf-single-cover { margin-bottom: 40px; border-radius: 12px; overflow: hidden; }
+.mpro-pf-single-cover img { width: 100%; height: auto; display: block; }
+
+.mpro-pf-single-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 48px;
+}
+@media (max-width: 900px) {
+  .mpro-pf-single-layout { grid-template-columns: 1fr; }
+}
+
+.mpro-pf-single-content { line-height: 1.75; }
+
+.mpro-pf-detail-panel {
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 18px;
+}
+.mpro-pf-detail-panel h3 {
+  margin: 0 0 14px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.6;
+}
+.mpro-pf-detail-list { margin: 0; }
+.mpro-pf-detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.9rem;
+}
+.mpro-pf-detail-row:last-child { border-bottom: none; }
+.mpro-pf-detail-row dt { opacity: 0.6; }
+.mpro-pf-detail-row dd { margin: 0; text-align: right; }
+
+.mpro-pf-tools-list, .mpro-pf-people-list {
+  list-style: none;
+  margin: 0; padding: 0;
+}
+.mpro-pf-tools-list li {
+  display: inline-block;
+  font-size: 0.82rem;
+  padding: 4px 10px;
+  margin: 0 6px 6px 0;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.06);
+}
+.mpro-pf-people-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.mpro-pf-people-list li:last-child { border-bottom: none; }
+.mpro-pf-people-list span {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+/* ── Archive ── */
+.mpro-pf-archive { max-width: 1280px; margin: 0 auto; padding: 50px 20px; }
+.mpro-pf-archive-title { font-size: 2.2rem; margin-bottom: 36px; }
+.mpro-pf-pagination { margin-top: 40px; text-align: center; }
