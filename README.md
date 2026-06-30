@@ -2,7 +2,7 @@
 
 > A complete portfolio / case-study management system for WordPress, with custom card styles, Elementor template support, and Rank Math SEO integration. Part of the MPRO plugin suite.
 
-[![Version](https://img.shields.io/badge/version-1.0.0-black?style=flat-square)](https://github.com/moghadam-pro/portfolio-wp-plugin/releases)
+[![Version](https://img.shields.io/badge/version-1.0.1-black?style=flat-square)](https://github.com/moghadam-pro/portfolio-wp-plugin/releases)
 [![WordPress](https://img.shields.io/badge/WordPress-5.8%2B-3858e9?style=flat-square&logo=wordpress&logoColor=white)](https://wordpress.org)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4?style=flat-square&logo=php&logoColor=white)](https://php.net)
 [![License](https://img.shields.io/badge/license-GPL--2.0-green?style=flat-square)](https://www.gnu.org/licenses/gpl-2.0.html)
@@ -256,6 +256,14 @@ More plugins coming soon.
 ---
 
 ## Changelog
+
+### 1.0.1
+
+- Fixed Elementor template checkboxes incorrectly appearing checked (strict type comparison in `in_array`)
+- Fixed Elementor card style silently rendering nothing when Elementor is deactivated — now falls back to Style 1
+- Removed dead `admin_init` hook and empty method from `MPRO_PF_Admin_Menu`
+- Fixed potential XSS in admin repeater JS — "Add Tool" rows now built via jQuery DOM methods
+- Added `.vscode/settings.json` with Intelephense WordPress stubs for IDE support
 
 ### 1.0.0
 

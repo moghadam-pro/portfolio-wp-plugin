@@ -20,7 +20,6 @@ class MPRO_PF_Admin_Menu {
 
     public static function init() {
         add_action( 'admin_menu', [ __CLASS__, 'register_menu' ] );
-        add_action( 'admin_init', [ __CLASS__, 'register_settings' ] );
     }
 
     public static function register_menu() {
@@ -81,10 +80,6 @@ class MPRO_PF_Admin_Menu {
             'mpro-portfolio-styles',
             [ __CLASS__, 'render_styles_page' ]
         );
-    }
-
-    public static function register_settings() {
-        // Settings are registered in MPRO_PF_Styles::register_settings()
     }
 
     public static function render_styles_page() {
@@ -161,7 +156,7 @@ class MPRO_PF_Admin_Menu {
                                     <label style="display:block;margin-bottom:6px;">
                                         <input type="checkbox" name="mpro_pf_style_settings[elementor_card_templates][]"
                                             value="<?php echo esc_attr( $tpl_id ); ?>"
-                                            <?php checked( in_array( $tpl_id, $settings['elementor_card_templates'] ) ); ?>>
+                                            <?php checked( in_array( $tpl_id, $settings['elementor_card_templates'], true ) ); ?>>
                                         <?php echo esc_html( $tpl_title ); ?>
                                     </label>
                                     <?php endforeach; ?>

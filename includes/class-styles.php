@@ -126,8 +126,13 @@ class MPRO_PF_Styles {
         $style = $styles[ $style_key ];
 
         // Elementor template card
-        if ( ! empty( $style['elementor_template_id'] ) && class_exists( '\Elementor\Plugin' ) ) {
-            echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $style['elementor_template_id'] );
+        if ( ! empty( $style['elementor_template_id'] ) ) {
+            if ( class_exists( '\Elementor\Plugin' ) ) {
+                echo \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $style['elementor_template_id'] );
+                return;
+            }
+            // Elementor deactivated — fall back to the default built-in style
+            call_user_func( $styles['style-1']['render'], $post_id );
             return;
         }
 

@@ -3,7 +3,7 @@
  * Plugin Name: MPRO Portfolio
  * Plugin URI:  https://moghadam.pro
  * Description: A complete portfolio / case-study management system with custom card styles, Elementor template support, and Rank Math SEO integration. Part of the MPRO suite.
- * Version:     1.0.0
+ * Version:     1.0.1
  * Author:      Sayid Moghadam
  * Author URI:  https://moghadam.pro
  * License:     GPL-2.0+
@@ -12,7 +12,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'MPRO_PF_VERSION', '1.0.0' );
+define( 'MPRO_PF_VERSION', '1.0.1' );
 define( 'MPRO_PF_PATH', plugin_dir_path( __FILE__ ) );
 define( 'MPRO_PF_URL',  plugin_dir_url( __FILE__ ) );
 define( 'MPRO_PF_POST_TYPE', 'mpro_portfolio' );

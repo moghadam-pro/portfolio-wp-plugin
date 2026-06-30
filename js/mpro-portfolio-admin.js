@@ -28,16 +28,19 @@ jQuery(function ($) {
           '<button type="button" class="button mpro-pf-remove-row">Remove</button>' +
         '</div>';
     } else {
-      var name = $btn.data('name');
-      var placeholder = $btn.data('placeholder') || '';
-      rowHtml =
-        '<div class="mpro-pf-repeater-row">' +
-          '<input type="text" name="' + name + '" class="regular-text" placeholder="' + placeholder + '">' +
-          '<button type="button" class="button mpro-pf-remove-row">Remove</button>' +
-        '</div>';
+      var $input = $('<input>', {
+        type: 'text',
+        name: $btn.data('name'),
+        'class': 'regular-text',
+        placeholder: $btn.data('placeholder') || ''
+      });
+      var $remove = $('<button>', { type: 'button', 'class': 'button mpro-pf-remove-row' }).text('Remove');
+      var $div = $('<div>', { 'class': 'mpro-pf-repeater-row' }).append($input, $remove);
+      $rows.append($div);
+      return;
     }
 
-    $rows.append(rowHtml);
+    if (rowHtml) $rows.append(rowHtml);
   });
 
   $(document).on('click', '.mpro-pf-remove-row', function () {
