@@ -1,0 +1,1 @@
+A structured WordPress portfolio plugin with project metadata, reusable card styles, Elementor templates and widgets, shortcodes, archives, and Rank Math integration.
