@@ -20,12 +20,79 @@ final class MPRO_Portfolio_Rank_Math {
 	 * @return void
 	 */
 	public static function init() {
+		// Before Rank Math's own watcher, which runs on admin_init at 10.
+		add_action( 'admin_init', array( __CLASS__, 'claim_content_types' ), 1 );
 		add_filter( 'rank_math/post_type_icons', array( __CLASS__, 'post_type_icons' ) );
 		add_filter( 'rank_math/taxonomy_icons', array( __CLASS__, 'taxonomy_icons' ) );
 		add_filter( 'rank_math/settings/snippet/type', array( __CLASS__, 'default_schema_type' ), 10, 2 );
 		add_filter( 'rank_math/settings/defaults/titles', array( __CLASS__, 'title_defaults' ) );
 		add_filter( 'rank_math/settings/defaults/sitemap', array( __CLASS__, 'sitemap_defaults' ) );
 		add_action( 'rank_math/vars/register_extra_replacements', array( __CLASS__, 'register_variables' ) );
+	}
+
+	/**
+	 * Tell Rank Math our content types are not new.
+	 *
+	 * Rank Math notices any public post type or taxonomy it has not recorded
+	 * before and raises a dashboard notification asking the site owner to
+	 * review its Titles & Meta and Sitemap settings. The plugin already ships
+	 * sensible Rank Math defaults for Portfolio, so the prompt is noise on
+	 * every screen. Registering the types in Rank Math's own "known" lists
+	 * before its watcher compares them means the notice is never raised, and
+	 * any copy already sitting in the queue is cleared.
+	 *
+	 * @return void
+	 */
+	public static function claim_content_types() {
+		if ( ! class_exists( 'RankMath' ) ) {
+			return;
+		}
+
+		self::mark_known(
+			'rank_math_known_post_types',
+			array( MPRO_Portfolio_Content_Types::POST_TYPE )
+		);
+		self::mark_known(
+			'rank_math_known_taxonomies',
+			array(
+				MPRO_Portfolio_Content_Types::TAX_CATEGORY,
+				MPRO_Portfolio_Content_Types::TAX_TAG,
+			)
+		);
+
+		if ( is_callable( array( '\\RankMath\\Helper', 'remove_notification' ) ) ) {
+			foreach ( array( 'new_post_type', 'new_taxonomy' ) as $notification ) {
+				call_user_func( array( '\\RankMath\\Helper', 'remove_notification' ), $notification );
+			}
+		}
+	}
+
+	/**
+	 * Add slugs to one of Rank Math's "known" option lists.
+	 *
+	 * The option is only written when something is actually missing, so this
+	 * costs one cached read per admin request in the steady state.
+	 *
+	 * @param string $option Option name.
+	 * @param array  $slugs  Slugs to record.
+	 * @return void
+	 */
+	private static function mark_known( $option, $slugs ) {
+		$known = get_option( $option, array() );
+
+		if ( ! is_array( $known ) || empty( $known ) ) {
+			// An empty list means Rank Math has not run its first scan yet;
+			// it treats that as "nothing is new", so leave it alone.
+			return;
+		}
+
+		$missing = array_diff( $slugs, $known );
+
+		if ( empty( $missing ) ) {
+			return;
+		}
+
+		update_option( $option, array_values( array_unique( array_merge( $known, $slugs ) ) ) );
 	}
 
 	/**

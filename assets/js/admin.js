@@ -38,9 +38,12 @@
 		var row = template.clone(false, false);
 		var html = row.prop('outerHTML').split('__INDEX__').join(uniqueIndex());
 		row = $(html);
-		row.removeClass('mpro-repeater__template').prop('hidden', false);
-		row.find('input').val('');
+		row.removeClass('mpro-repeater__template').removeAttr('hidden');
+		// The template's fields are disabled so they stay out of the POST.
+		// The copy the author is about to fill in has to be live again.
+		row.find('input, select, textarea').removeAttr('disabled').prop('disabled', false).val('');
 		repeater.find('.mpro-repeater__rows').append(row);
+		row.find('input, select, textarea').first().trigger('focus');
 	});
 
 	$(document).on('click', '.mpro-repeater__remove', function (event) {

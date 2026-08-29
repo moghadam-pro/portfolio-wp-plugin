@@ -680,9 +680,11 @@ final class MPRO_Portfolio_Meta_Boxes {
 	 */
 	private static function render_tool_row( $tool, $template = false ) {
 		$class = $template ? ' mpro-repeater__template' : '';
+		// hidden does not keep a field out of the POST; disabled does.
+		$off   = $template ? ' disabled' : '';
 		?>
 		<div class="mpro-repeater__row<?php echo esc_attr( $class ); ?>" <?php echo $template ? 'hidden' : ''; ?>>
-			<input type="text" name="mpro_portfolio_tools[]" value="<?php echo esc_attr( $tool ); ?>" class="widefat" placeholder="<?php esc_attr_e( 'Figma', 'mpro-portfolio' ); ?>">
+			<input type="text" name="mpro_portfolio_tools[]" value="<?php echo esc_attr( $tool ); ?>" class="widefat" placeholder="<?php esc_attr_e( 'Figma', 'mpro-portfolio' ); ?>"<?php echo $off; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 			<button type="button" class="button-link-delete mpro-repeater__remove"><?php esc_html_e( 'Remove', 'mpro-portfolio' ); ?></button>
 		</div>
 		<?php
@@ -701,11 +703,12 @@ final class MPRO_Portfolio_Meta_Boxes {
 		$url   = isset( $person['url'] ) ? $person['url'] : '';
 		$index = $template ? '__INDEX__' : uniqid( 'person_', false );
 		$class = $template ? ' mpro-repeater__template' : '';
+		$off   = $template ? ' disabled' : '';
 		?>
 		<div class="mpro-repeater__row mpro-repeater__row--columns<?php echo esc_attr( $class ); ?>" <?php echo $template ? 'hidden' : ''; ?>>
-			<input type="text" name="mpro_portfolio_collaborators[<?php echo esc_attr( $index ); ?>][name]" value="<?php echo esc_attr( $name ); ?>" placeholder="<?php esc_attr_e( 'Name', 'mpro-portfolio' ); ?>">
-			<input type="text" name="mpro_portfolio_collaborators[<?php echo esc_attr( $index ); ?>][role]" value="<?php echo esc_attr( $role ); ?>" placeholder="<?php esc_attr_e( 'Role', 'mpro-portfolio' ); ?>">
-			<input type="url" name="mpro_portfolio_collaborators[<?php echo esc_attr( $index ); ?>][url]" value="<?php echo esc_attr( $url ); ?>" placeholder="https://">
+			<input type="text" name="mpro_portfolio_collaborators[<?php echo esc_attr( $index ); ?>][name]" value="<?php echo esc_attr( $name ); ?>" placeholder="<?php esc_attr_e( 'Name', 'mpro-portfolio' ); ?>"<?php echo $off; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+			<input type="text" name="mpro_portfolio_collaborators[<?php echo esc_attr( $index ); ?>][role]" value="<?php echo esc_attr( $role ); ?>" placeholder="<?php esc_attr_e( 'Role', 'mpro-portfolio' ); ?>"<?php echo $off; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+			<input type="url" name="mpro_portfolio_collaborators[<?php echo esc_attr( $index ); ?>][url]" value="<?php echo esc_attr( $url ); ?>" placeholder="https://"<?php echo $off; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 			<button type="button" class="button-link-delete mpro-repeater__remove"><?php esc_html_e( 'Remove', 'mpro-portfolio' ); ?></button>
 		</div>
 		<?php
@@ -723,10 +726,11 @@ final class MPRO_Portfolio_Meta_Boxes {
 		$value = isset( $detail['value'] ) ? $detail['value'] : '';
 		$index = $template ? '__INDEX__' : uniqid( 'detail_', false );
 		$class = $template ? ' mpro-repeater__template' : '';
+		$off   = $template ? ' disabled' : '';
 		?>
 		<div class="mpro-repeater__row mpro-repeater__row--details<?php echo esc_attr( $class ); ?>" <?php echo $template ? 'hidden' : ''; ?>>
-			<input type="text" name="mpro_portfolio_meta_details[<?php echo esc_attr( $index ); ?>][label]" value="<?php echo esc_attr( $label ); ?>" placeholder="<?php esc_attr_e( 'Label', 'mpro-portfolio' ); ?>">
-			<input type="text" name="mpro_portfolio_meta_details[<?php echo esc_attr( $index ); ?>][value]" value="<?php echo esc_attr( $value ); ?>" placeholder="<?php esc_attr_e( 'Value', 'mpro-portfolio' ); ?>">
+			<input type="text" name="mpro_portfolio_meta_details[<?php echo esc_attr( $index ); ?>][label]" value="<?php echo esc_attr( $label ); ?>" placeholder="<?php esc_attr_e( 'Label', 'mpro-portfolio' ); ?>"<?php echo $off; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+			<input type="text" name="mpro_portfolio_meta_details[<?php echo esc_attr( $index ); ?>][value]" value="<?php echo esc_attr( $value ); ?>" placeholder="<?php esc_attr_e( 'Value', 'mpro-portfolio' ); ?>"<?php echo $off; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 			<button type="button" class="button-link-delete mpro-repeater__remove"><?php esc_html_e( 'Remove', 'mpro-portfolio' ); ?></button>
 		</div>
 		<?php

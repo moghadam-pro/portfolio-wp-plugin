@@ -118,3 +118,38 @@
 		grid-template-columns:1fr
 	}
 }
+
+/* Side meta boxes are far narrower than a list table, so .widefat alone lets a
+   select push past the panel and give the editor sidebar a horizontal
+   scrollbar. Everything in a portfolio side box is capped to the box. */
+#mpro_portfolio_display .inside,
+#side-sortables .postbox[id^="mpro_portfolio"] .inside {
+	box-sizing:border-box;
+	max-width:100%;
+	overflow-wrap:anywhere
+}
+#mpro_portfolio_display select,
+#mpro_portfolio_display input[type="text"],
+#mpro_portfolio_display input[type="url"],
+#mpro_portfolio_display textarea,
+#side-sortables .postbox[id^="mpro_portfolio"] select,
+#side-sortables .postbox[id^="mpro_portfolio"] input[type="text"],
+#side-sortables .postbox[id^="mpro_portfolio"] input[type="url"],
+#side-sortables .postbox[id^="mpro_portfolio"] textarea {
+	box-sizing:border-box;
+	width:100%;
+	max-width:100%;
+	min-width:0
+}
+#mpro_portfolio_display input[type="checkbox"] {
+	width:auto
+}
+.edit-post-meta-boxes-area .postbox[id^="mpro_portfolio"] select,
+.editor-meta-boxes-area .postbox[id^="mpro_portfolio"] select {
+	max-width:100%
+}
+.mpro-repeater__row input,
+.mpro-repeater__row select {
+	box-sizing:border-box;
+	min-width:0
+}

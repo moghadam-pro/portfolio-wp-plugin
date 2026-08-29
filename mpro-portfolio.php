@@ -3,7 +3,7 @@
  * Plugin Name: MPRO Portfolio
  * Plugin URI: https://github.com/moghadampro/mpro-portfolio
  * Description: A structured portfolio manager with reusable card styles, Elementor integration, shortcodes, archives, and Rank Math support.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Author: Sayid Moghadam
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'MPRO_PORTFOLIO_VERSION', '1.1.0' );
+define( 'MPRO_PORTFOLIO_VERSION', '1.1.1' );
 define( 'MPRO_PORTFOLIO_FILE', __FILE__ );
 define( 'MPRO_PORTFOLIO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MPRO_PORTFOLIO_URL', plugin_dir_url( __FILE__ ) );

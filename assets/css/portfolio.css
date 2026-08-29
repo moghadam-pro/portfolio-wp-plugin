@@ -327,3 +327,75 @@
 		min-height:360px
 	}
 }
+
+/* ------------------------------------------------------------------
+   Theme bridge
+
+   Every value below falls back to what the plugin already used, so the
+   plugin still looks right on any theme. When the Moghadam theme is active
+   its tokens are picked up instead, and portfolio archives and single
+   pages read as part of the site rather than as a plugin drop-in.
+   ------------------------------------------------------------------ */
+:root {
+	--mpro-radius: var(--radius, 18px);
+	--mpro-border: var(--line, color-mix(in srgb, currentColor 16%, transparent));
+	--mpro-accent: var(--yellow, currentColor);
+	--mpro-muted: var(--text-muted, color-mix(in srgb, currentColor 62%, transparent));
+	--mpro-surface: var(--card, color-mix(in srgb, currentColor 5%, transparent))
+}
+.mpro-portfolio-archive,
+.mpro-portfolio-single {
+	color: var(--text-body, inherit)
+}
+.mpro-portfolio-card__title,
+.mpro-portfolio-archive__title,
+.mpro-portfolio-single__title,
+.mpro-portfolio-detail-panel h2 {
+	font-family: var(--font-display, inherit);
+	font-weight: 700;
+	color: var(--text, inherit)
+}
+.mpro-portfolio-card__eyebrow,
+.mpro-portfolio-detail-panel dt {
+	font-family: var(--font-mono, inherit);
+	color: var(--mpro-muted)
+}
+.mpro-portfolio-card__description,
+.mpro-portfolio-archive__description,
+.mpro-portfolio-single__summary {
+	color: var(--text-body, inherit)
+}
+.mpro-portfolio-detail-panel {
+	background: var(--mpro-surface);
+	border-color: var(--mpro-border)
+}
+.mpro-portfolio-chip-list li,
+.mpro-portfolio-chip-list a,
+.mpro-portfolio-single__taxonomies a,
+.mpro-portfolio-pagination a,
+.mpro-portfolio-pagination span {
+	border-color: var(--mpro-border)
+}
+.mpro-portfolio-chip-list a:hover,
+.mpro-portfolio-single__taxonomies a:hover,
+.mpro-portfolio-card__link:hover .mpro-portfolio-card__title {
+	color: var(--mpro-accent)
+}
+.mpro-portfolio-pagination .current {
+	background: var(--mpro-accent);
+	border-color: var(--mpro-accent);
+	color: var(--white-100, #fff)
+}
+.mpro-portfolio-card__media,
+.mpro-portfolio-single__cover img {
+	border-radius: var(--mpro-radius)
+}
+/* the theme animates content in; give the plugin's grid the same hook */
+.moghadam-design .mpro-portfolio-grid > * {
+	will-change: transform, opacity
+}
+@media (prefers-reduced-motion: reduce) {
+	.mpro-portfolio-card__image {
+		transition: none
+	}
+}
