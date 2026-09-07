@@ -7,3 +7,12 @@ vendor/
 *.log
 *.zip
 .phpunit.result.cache
+
+# Cross-platform OS metadata
+._*
+.Spotlight-V100
+.Trashes
+[Tt]humbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
